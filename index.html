@@ -1672,13 +1672,36 @@ if (isNaN(q33) || isNaN(q37) || isNaN(q38) || isNaN(q41) || isNaN(q43) || isNaN(
         // Redirect to the desired URL instead of showing an alert
           window.location.href = "https://submit-page.onrender.com/";
     }
-     // Prevent right-click and certain key actions
-     document.addEventListener('contextmenu', event => event.preventDefault());
-        document.addEventListener('keydown', event => {
-            if (event.key === 'F12' || (event.ctrlKey && (event.key === 'U' || event.key === 'I' || event.key === 'C'))) {
-                event.preventDefault();
-            }
-        });
+      // Prevent right click
+document.oncontextmenu = () => {
+    alert("Open admin only on this page Inspect elements");
+    return false;
+};
+        document.onkeydown = e => {
+    // Prevent F12 key
+    if (e.key == "F12") {
+        alert("Open admin only on this page Sources Code");
+        return false;
+    }
+
+    // Prevent showing page source by Ctrl + U
+    if (e.ctrlKey && e.key == "u") {
+        alert("Open admin only on this page Sources Code");
+        return false;
+    }
+
+    // Prevent copying anything from the page
+    if (e.ctrlKey && e.key == "c") {
+        alert("Open admin only on this page Sources Code");
+        return false;
+    }
+
+    // Prevent pasting anything from other sources
+    if (e.ctrlKey && e.key == "v") {
+        alert("Open admin only on this page Sources Code");
+        return false;
+    }
+};
     // Prepare results
 //  } const results = {
 //         name,
@@ -1798,6 +1821,7 @@ if (isNaN(q33) || isNaN(q37) || isNaN(q38) || isNaN(q41) || isNaN(q43) || isNaN(
             
 
             
+
 
 
             
