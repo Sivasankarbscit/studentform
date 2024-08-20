@@ -1673,36 +1673,26 @@ if (isNaN(q33) || isNaN(q37) || isNaN(q38) || isNaN(q41) || isNaN(q43) || isNaN(
           window.location.href = "https://submit-page.onrender.com/";
     }
 
-// Prevent right click
-document.oncontextmenu = () => {
-    alert("Open admin only on this page Inspect elements");
-    return false;
-};
+ // Prevent right click and certain keyboard shortcuts
+        document.oncontextmenu = () => {
+            alert("Open admin only on this page Inspect elements");
+            return false;
+        };
+
         document.onkeydown = e => {
-    // Prevent F12 key
-    if (e.key == "F12") {
-        alert("Open admin only on this page Sources Code");
-        return false;
-    }
+            const alertMessage = "Open admin only on this page Sources Code";
 
-    // Prevent showing page source by Ctrl + U
-    if (e.ctrlKey && e.key == "u") {
-        alert("Open admin only on this page Sources Code");
-        return false;
-    }
-
-    // Prevent copying anything from the page
-    if (e.ctrlKey && e.key == "c") {
-        alert("Open admin only on this page Sources Code");
-        return false;
-    }
-
-    // Prevent pasting anything from other sources
-    if (e.ctrlKey && e.key == "v") {
-        alert("Open admin only on this page Sources Code");
-        return false;
-    }
-};
+            if (e.key === "F12" || 
+                (e.ctrlKey && e.key === "u") || 
+                (e.ctrlKey && e.key === "c") || 
+                (e.ctrlKey && e.key === "v") || 
+                (e.ctrlKey && e.shiftKey && (e.key.toLowerCase() === "c" || e.key.toLowerCase() === "i"))
+            ) {
+                alert(alertMessage);
+                e.preventDefault(); // Prevent the default action (if any)
+                return false;
+            }
+        };
     // Prepare results
 //  } const results = {
 //         name,
